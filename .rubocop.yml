@@ -1,0 +1,87 @@
+# Ruby style guide: https://rubystyle.guide/
+
+#-- Metrics rules:
+
+# Checks if the length of a method exceeds some maximum value.
+# https://docs.rubocop.org/rubocop/cops_metrics.html#metricsmethodlength
+Metrics/MethodLength:
+  Enabled: false
+
+# Checks that the ABC size of methods is not higher than the configured maximum
+# https://docs.rubocop.org/rubocop/cops_metrics.html#metricsabcsize
+Metrics/AbcSize:
+  Enabled: false
+
+# Checks that the cyclomatic complexity of methods is not higher than the configured maximum
+# https://docs.rubocop.org/rubocop/cops_metrics.html#metricscyclomaticcomplexity
+Metrics/CyclomaticComplexity:
+  Enabled: false
+
+# Tries to produce a complexity score that's a measure of the complexity the reader experiences 
+# when looking at a method.
+# https://docs.rubocop.org/rubocop/cops_metrics.html#metricsperceivedcomplexity
+Metrics/PerceivedComplexity:
+  Enabled: false
+
+# Checks if the length of a class exceeds some maximum value
+# https://docs.rubocop.org/rubocop/cops_metrics.html#metricsclasslength
+Metrics/ClassLength:
+  Enabled: false
+
+# Checks if the length of a block exceeds some maximum value
+# https://docs.rubocop.org/rubocop/cops_metrics.html#metricsblocklength
+Metrics/BlockLength:
+  Enabled: false
+
+# Checks for methods with too many parameters
+# https://docs.rubocop.org/rubocop/cops_metrics.html#metricsparameterlists
+Metrics/ParameterLists:
+  Enabled: false
+
+#-- Layout rules
+
+# Checks the length of lines in the source code
+# https://docs.rubocop.org/rubocop/cops_layout.html#layoutlinelength
+Layout/LineLength:
+  Enabled: false
+
+#-- Lint rules:
+
+# Enforces that Ruby source files are not empty
+# https://docs.rubocop.org/rubocop/cops_lint.html#lintemptyfile
+Lint/EmptyFile:
+  Enabled: false
+
+# Do not define constants within a block, since the block's scope does not isolate or 
+# namespace the constant in any way.
+# https://docs.rubocop.org/rubocop/cops_lint.html#lintconstantdefinitioninblock
+Lint/ConstantDefinitionInBlock:
+  Enabled: false
+
+#-- Style rules:
+
+# Checks for missing top-level documentation of classes and modules
+# https://docs.rubocop.org/rubocop/cops_style.html#styledocumentation
+Style/Documentation:
+  Enabled: false
+
+# Checks for uses of class variables.
+# https://docs.rubocop.org/rubocop/cops_style.html#styleclassvars
+Style/ClassVars:
+  Enabled: false
+
+# Helps you transition from mutable string literals to frozen string literals.
+# https://docs.rubocop.org/rubocop/cops_style.html#stylefrozenstringliteralcomment
+Style/FrozenStringLiteralComment:
+  Enabled: false
+
+# Checks for trailing comma in hash literals.
+# https://docs.rubocop.org/rubocop/cops_style.html#styletrailingcommainhashliteral
+Style/TrailingCommaInHashLiteral:
+  Enabled: false
+
+# Check for if and case statements where each branch is used for assignment to the same variable when using 
+# the return of the condition can be used instead.
+# https://docs.rubocop.org/rubocop/cops_style.html#styleconditionalassignment
+Style/ConditionalAssignment:
+  Enabled: false

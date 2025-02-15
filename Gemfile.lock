@@ -1,0 +1,53 @@
+GEM
+  remote: https://rubygems.org/
+  specs:
+    RubyInline (3.14.1)
+      ZenTest (~> 4.3)
+    ZenTest (4.12.2)
+    ast (2.4.2)
+    base64 (0.2.0)
+    digest (3.2.0)
+    json (2.10.1)
+    language_server-protocol (3.17.0.4)
+    osx_keychain (1.0.2)
+      RubyInline (~> 3)
+    parallel (1.26.3)
+    parser (3.3.7.1)
+      ast (~> 2.4.1)
+      racc
+    racc (1.8.1)
+    rainbow (3.1.1)
+    regexp_parser (2.10.0)
+    rubocop (1.71.2)
+      json (~> 2.3)
+      language_server-protocol (>= 3.17.0)
+      parallel (~> 1.10)
+      parser (>= 3.3.0.2)
+      rainbow (>= 2.2.2, < 4.0)
+      regexp_parser (>= 2.9.3, < 3.0)
+      rubocop-ast (>= 1.38.0, < 2.0)
+      ruby-progressbar (~> 1.7)
+      unicode-display_width (>= 2.4.0, < 4.0)
+    rubocop-ast (1.38.0)
+      parser (>= 3.3.1.0)
+    ruby-progressbar (1.13.0)
+    unicode-display_width (3.1.4)
+      unicode-emoji (~> 4.0, >= 4.0.4)
+    unicode-emoji (4.0.4)
+
+PLATFORMS
+  arm64-darwin-24
+  ruby
+
+DEPENDENCIES
+  base64
+  digest
+  json
+  osx_keychain
+  rubocop
+
+RUBY VERSION
+   ruby 3.3.6p108
+
+BUNDLED WITH
+   2.5.22
