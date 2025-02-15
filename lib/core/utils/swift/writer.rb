@@ -119,7 +119,7 @@ module Keys
             // MARK: - Methods
 
             /// Fetch the key from the keys enum
-            var secretKey: Keys { Keys(rawValue: self) ?? .unknown }
+            public var secretKey: Keys { Keys(rawValue: self) ?? .unknown }
 
             /// Fetch the decrypted value of the key
             ///
