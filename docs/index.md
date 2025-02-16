@@ -1,28 +1,21 @@
----
-title: Secure Keys Generator
----
+# Secure Key Generator for iOS Projects
 
-<div style="display: flex; gap: 10px; padding-bottom: 20px;">
-  <img src="https://img.shields.io/badge/version-1.0.0-cyan" alt="Keys Version 1.0.0">
+A utility to securely generate and manage keys for iOS projects using `xcframework`. This tool helps to safely store and retrieve sensitive keys such as API tokens and access credentials in your iOS app, with support for both local and CI environments.
 
-  <img src="https://img.shields.io/badge/iOS-^13.0-blue" alt="iOS version 13.0">
+## Prerequisites
 
-  <img src="https://img.shields.io/badge/Ruby-^3.3.6-red" alt="Ruby version 3.3.6">
+Before you begin, ensure that your development environment meets the following prerequisites:
 
-</div>
+- **Ruby 3.3.6 or higher**
+- **iOS 13.0 or higher**
 
-# Secure Key Generator for iOS projects
+## Installation
 
-Utility to generate a `xcframework` for handling secure keys in iOS projects.
+There are multiple ways to install the `Keys` utility:
 
-### Prerequisites
+### Option 1: Install via Homebrew
 
-- Ruby 3.3.6 or higher
-- iOS 13.0 or higher
-
-### Installation
-
-You can install the `Keys` utility using Homebrew using the following command:
+You can install the `Keys` utility using [Homebrew](https://brew.sh/) with the following commands:
 
 ```bash
 brew tap DerianCordobaPerez/tap https://github.com/DerianCordobaPerez/secure-keys-generator
@@ -30,19 +23,23 @@ brew tap DerianCordobaPerez/tap https://github.com/DerianCordobaPerez/secure-key
 brew install DerianCordobaPerez/tap/secure_keys
 ```
 
-Another way, you can install the `Keys` utility using `gem` command:
+### Option 2: Install via RubyGems
+
+Alternatively, you can install the utility using RubyGems:
 
 ```bash
 gem install secure-keys
 ```
 
-If you using `bundler` you can add the `secure-keys` gem to the `Gemfile`:
+### Option 3: Install via Bundler
 
-```ruby
+If you're using Bundler to manage your Ruby dependencies, add the gem to your `Gemfile`:
+
+```bash
 gem 'secure-keys'
 ```
 
-Then, you can install the gem using:
+Then, run:
 
 ```bash
 bundle install
@@ -50,25 +47,24 @@ bundle install
 
 ## Usage
 
-As first step, you need to determine the keys that you want to use in your iOS project. You can define the keys from Keychain or env variables.
+### Step 1: Define Your Keys
 
-The source is determined by the current platform **local or CI / cloud** using the `CI` environment variable.
+First, determine the keys you want to use in your iOS project. The keys can be sourced either from your Keychain or environment variables. The source of keys is determined by the `CI` environment variable.
 
-If the `CI` environment variable is set to `true`, the keys are read from the environment variables. Otherwise, the keys are read from the Keychain.
+- If `CI=true`, keys will be read from environment variables.
+- If `CI=false` or not set, keys will be read from the Keychain.
 
-You can configure your keys like this:
+You can configure your keys as follows:
 
-### From Keychain
+#### From Keychain
 
-1. You need to define the `secure-keys` record in the Keychain with the key name and the key value.
-
-The value for this key should be all the key names separated by a comma.
+1. Define the secure-keys record in your Keychain with the key names and values. The value should be a comma-separated list of keys.
 
 ```bash
 security add-generic-password -a "secure-keys" -s "secure-keys" -w "githubToken,apiKey"
 ```
 
-If you want to use another keychain identifier, you can define an env variable named `SECURE_KEYS_IDENTIFIER` to set the keychain identifier.
+If you need to use a custom Keychain identifier, set the `SECURE_KEYS_IDENTIFIER` environment variable:
 
 ```bash
 export SECURE_KEYS_IDENTIFIER="your-keychain-identifier"
@@ -76,104 +72,75 @@ export SECURE_KEYS_IDENTIFIER="your-keychain-identifier"
 security add-generic-password -a "$SECURE_KEYS_IDENTIFIER" -s "$SECURE_KEYS_IDENTIFIER" -w "githubToken,apiKey"
 ```
 
-2. You can add new keys using the `security` command.
+2. Add new keys to the Keychain as needed:
 
 ```bash
 security add-generic-password -a "secure-keys" -s "apiKey" -w "your-api-key"
 ```
 
-Using custom keychain identifier:
+Or with a custom Keychain identifier:
 
 ```bash
 security add-generic-password -a "$SECURE_KEYS_IDENTIFIER" -s "apiKey" -w "your-api-key"
 ```
 
-### Environment variables
+#### From Environment Variables
 
-1. You can define the keys in the `.env` file or export the keys as environment variables.
+You can export them directly as environment variables.
 
 ```bash
 export SECURE_KEYS_IDENTIFIER="github-token,api_key,firebaseToken"
-
 export GITHUB_TOKEN="your-github-token"
 export API_KEY="your-api-key"
 export FIREBASETOKEN="your-firebase-token"
 ```
 
-> The key names are formatted in uppercase and replace the `-` with `_`.
+> Important: Key names should be formatted in uppercase with `-` replaced by `_` (e.g., `github-token` becomes `GITHUB_TOKEN`).
 
-> [!IMPORTANT]
-> If you want to use another demiliter, you can define an env variable named `SECURE_KEYS_DELIMITER` to set the delimiter.
+##### Custom Delimiter
+
+If you prefer a delimiter other than the default comma, you can set a custom delimiter using the `SECURE_KEYS_DELIMITER` environment variable:
 
 ```bash
 export SECURE_KEYS_DELIMITER="|"
-
 export SECURE_KEYS_IDENTIFIER="github-token|api_key|firebaseToken"
 ```
 
-### Ruby script
+### Step 2: Generate the Keys.xcframework
 
-To generate the `Keys.xcframework` use the `secure-keys` command in the iOS project root directory.
-
-Using global gem:
+After configuring your keys, generate the `Keys.xcframework` by running the following command in your iOS project root directory:
 
 ```bash
 secure-keys
 ```
 
-Using bundler:
+Using Bundler:
 
 ```bash
 bundle exec secure-keys
 ```
 
-### iOS project
-
-Within the iOS project, you can use the `Keys` target dependency like:
-
-```swift
-import Keys
-
-// Using key directly in the code
-let apiKey = Keys.apiKey.decryptedValue
-
-// Using key from `Key` enum
-let someKey: String = key(for: .someKey)
-
-// Alternative way to use key from `Key` enum
-let someKey: String = key(.someKey)
-
-// Using raw value from `Key` enum
-let apiKey: Keys = "apiKey".secretKey
-
-// Using raw value from `Key` enum with decrypted value
-let apiKey: String = "apiKey".secretKey.decryptedValue
-
-// Using `key` method to get the key
-let apiKey: String = .key(for: .apiKey)
-```
-
-## How to install the `Keys.xcframework` in the iOS project
+### Step 3: Integrate Keys.xcframework into Your iOS Project
 
 1. From the iOS project, click on the project target, select the `General` tab, and scroll down to the `Frameworks, Libraries, and Embedded Content` section.
 
-![Project Target](/docs/assets/add-xcframework-to-ios-project/first-step.png)
+![Project Target](https://deriancordobaperez.github.io/secure-keys-generator/assets/add-xcframework-to-ios-project/first-step.png)
 
 2. Click on the `Add Other...` button and click on the `Add Files...` option.
 
-![Add Files](/docs/assets/add-xcframework-to-ios-project/second-step.png)
+![Add Files](https://deriancordobaperez.github.io/secure-keys-generator/assets/add-xcframework-to-ios-project/second-step.png)
 
 3. Navigate to the `keys` directory and select the `Keys.xcframework` folder.
 
-![Select Keys.xcframework](/docs/assets/add-xcframework-to-ios-project/third-step.png)
+![Select Keys.xcframework](https://deriancordobaperez.github.io/secure-keys-generator/assets/add-xcframework-to-ios-project/third-step.png)
 
 > Now the `Keys.xcframework` is added to the iOS project.
 
-![Select Keys.xcframework](/docs/assets/add-xcframework-to-ios-project/third-step-result.png)
+![Select Keys.xcframework](https://deriancordobaperez.github.io/secure-keys-generator/assets/add-xcframework-to-ios-project/third-step-result.png)
 
 4. Click on the `Build settings` tab and search for the `Search Paths` section.
 
-![Search Paths](/docs/assets/add-xcframework-to-ios-project/fourth-step.png)
+![Search Paths](https://deriancordobaperez.github.io/secure-keys-generator/assets/add-xcframework-to-ios-project/fourth-step.png)
 
 > Add the path to the `Keys.xcframework` in the `Framework Search Paths` section.
 
@@ -182,38 +149,64 @@ $(inherited)
 $(SRCROOT)/.keys
 ```
 
-## How it works
+### Step 4: Use the Keys in Your Code
 
-The process when the script is executed is:
+In your iOS code, you can now use the Keys framework to securely retrieve your keys:
 
-1. Create a `.keys` directory.
-2. Create a temporary `Swift Package` in the `.keys` directory.
-3. Copy the `Keys` source code to the temporary `Swift Package`.
+```swift
+import Keys
 
-    ```swift
-    public enum Keys {
+// Using the key directly
+let apiKey = Keys.apiKey.decryptedValue
 
-        // MARK: - Cases
+// Accessing a key by enum case
+let someKey: String = key(for: .someKey)
 
-        case apiKey
-        case someKey
-        case unknown
+// Another way to access the key
+let someKey: String = key(.someKey)
 
-        // MARK: - Properties
+// Using the raw value to access the key
+let apiKey: Keys = "apiKey".secretKey
 
-        /// The decrypted value of the key
-        public var decryptedValue: String {
-            switch self {
-                case .apiKey: [1, 2, 4].decrypt(key: [248, 53, 26], iv: [148, 55, 47], tag: [119, 81])
-                case .someKey: [1, 2, 4].decrypt(key: [248, 53, 26], iv: [148, 55, 47], tag: [119, 81])
-                case .unknown: fatalError("Unknown key \(rawValue)")
-            }
+// Accessing decrypted value from the raw key
+let apiKey: String = "apiKey".secretKey.decryptedValue
+
+// Using the `key` method to retrieve the key
+let apiKey: String = .key(for: .apiKey)
+```
+
+## How It Works
+
+When the script is executed, it follows these steps:
+
+1. A `.keys` directory is created.
+2. A temporary Swift Package is generated within the `.keys` directory.
+3. The Keys source code is copied into the temporary Swift Package.
+4. The `Keys.xcframework` is generated using the temporary Swift Package.
+5. The temporary Swift Package is removed.
+
+```swift
+public enum Keys {
+
+    // MARK: - Cases
+
+    case apiKey
+    case someKey
+    case unknown
+
+    // MARK: - Properties
+
+    /// The decrypted value of the key
+    public var decryptedValue: String {
+        switch self {
+            case .apiKey: return [1, 2, 4].decrypt(key: [248, 53, 26], iv: [148, 55, 47], tag: [119, 81])
+            case .someKey: return [1, 2, 4].decrypt(key: [248, 53, 26], iv: [148, 55, 47], tag: [119, 81])
+            case .unknown: fatalError("Unknown key \(rawValue)")
         }
     }
-    ```
-4. Generate the `Keys.xcframework` using the temporary `Swift Package`.
-5. Remove the temporary `Swift Package`.
+}
+```
 
 ## License
 
-This project is licensed under the MIT [License](LICENSE).
+This project is licensed under the MIT License. See the [License](LICENSE) file for more information.
