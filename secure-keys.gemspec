@@ -16,7 +16,7 @@ Gem::Specification.new do |spec|
   spec.summary        = Keys::SUMMARY
   spec.description    = Keys::DESCRIPTION
   spec.license        = 'MIT'
-  spec.homepage       = 'https://github.com/DerianCordobaPerez/secure-keys-generator'
+  spec.homepage       = Keys::HOMEPAGE_URI
   spec.bindir         = 'bin'
   spec.require_paths  = %w[*/lib]
   spec.platform       = Gem::Platform::RUBY
