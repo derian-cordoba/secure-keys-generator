@@ -21,8 +21,9 @@ Utility to generate a `xcframework` for handling secure keys in iOS projects.
 You can install the `Keys` utility using Homebrew using the following command:
 
 ```bash
-brew tap DerianCordobaPerez/secure-keys-generator
-brew install secure-keys
+brew tap DerianCordobaPerez/tap https://github.com/DerianCordobaPerez/secure-keys-generator
+
+brew install DerianCordobaPerez/tap/secure_keys
 ```
 
 Another way, you can install the `Keys` utility using `gem` command:
