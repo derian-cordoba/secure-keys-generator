@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    secure-keys (1.0.2)
+    secure-keys (1.0.3)
       base64 (~> 0.2.0)
       digest (~> 3.2.0)
       json (~> 2.10.1)

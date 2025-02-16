@@ -21,6 +21,10 @@ Gem::Specification.new do |spec|
   spec.require_paths  = %w[*/lib]
   spec.platform       = Gem::Platform::RUBY
 
+  spec.metadata['homepage_uri'] = spec.homepage
+  spec.metadata['source_code_uri'] = spec.homepage
+  spec.metadata['changelog_uri'] = "#{spec.homepage}/releases"
+
   spec.files = Dir.glob('*/lib/**/*',
                         File::FNM_DOTMATCH) + Dir['bin/*'] + Dir['*/README.md'] + %w[README.md]
   spec.executables = spec.files.grep(%r{^bin/}) { |file| File.basename(file) }
