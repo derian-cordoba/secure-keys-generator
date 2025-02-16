@@ -18,16 +18,22 @@ Utility to generate a `xcframework` for handling secure keys in iOS projects.
 
 ### Installation
 
-Install gems using bundler
+You can install the `Keys` utility using `gem` command:
+
+```bash
+gem install secure-keys
+```
+
+If you using `bundler` you can add the `secure-keys` gem to the `Gemfile`:
+
+```ruby
+gem 'secure-keys'
+```
+
+Then, you can install the gem using:
 
 ```bash
 bundle install
-```
-
-If you don't have bundler installed, you can install it using:
-
-```bash
-gem install bundler
 ```
 
 ## Usage
@@ -95,10 +101,18 @@ export SECURE_KEYS_IDENTIFIER="github-token|api_key|firebaseToken"
 
 ### Ruby script
 
-To generate the `Keys.xcframework` use the `keys.rb` script with:
+To generate the `Keys.xcframework` use the `secure-keys` command in the iOS project root directory.
+
+Using global gem:
 
 ```bash
-bundle exec ruby ./bin/keys.rb
+secure-keys
+```
+
+Using bundler:
+
+```bash
+bundle exec secure-keys
 ```
 
 ### iOS project

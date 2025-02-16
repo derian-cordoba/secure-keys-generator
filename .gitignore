@@ -2,3 +2,6 @@
 
 # XCFramework files
 .keys/
+
+# Gem files
+secure-keys-*.gem

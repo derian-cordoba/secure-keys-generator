@@ -1,3 +1,12 @@
+PATH
+  remote: .
+  specs:
+    secure-keys (1.0.2)
+      base64 (~> 0.2.0)
+      digest (~> 3.2.0)
+      json (~> 2.10.1)
+      osx_keychain (~> 1.0.2)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -40,11 +49,8 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  base64
-  digest
-  json
-  osx_keychain
-  rubocop
+  rubocop (~> 1.71.2)
+  secure-keys!
 
 RUBY VERSION
    ruby 3.3.6p108
