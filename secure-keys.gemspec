@@ -31,6 +31,7 @@ Gem::Specification.new do |spec|
 
   spec.add_runtime_dependency 'base64', '~> 0.2.0'
   spec.add_runtime_dependency 'digest', '~> 3.2.0'
+  spec.add_runtime_dependency 'dotenv', '~> 3.1.7'
   spec.add_runtime_dependency 'json', '~> 2.10.1'
   spec.add_runtime_dependency 'osx_keychain', '~> 1.0.2'
   spec.add_development_dependency 'rubocop', '~> 1.71.2'

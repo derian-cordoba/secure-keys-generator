@@ -199,8 +199,8 @@ public enum Keys {
     /// The decrypted value of the key
     public var decryptedValue: String {
         switch self {
-            case .apiKey: return [1, 2, 4].decrypt(key: [248, 53, 26], iv: [148, 55, 47], tag: [119, 81])
-            case .someKey: return [1, 2, 4].decrypt(key: [248, 53, 26], iv: [148, 55, 47], tag: [119, 81])
+            case .apiKey: [1, 2, 4].decrypt(key: [248, 53, 26], iv: [148, 55, 47], tag: [119, 81])
+            case .someKey: [1, 2, 4].decrypt(key: [248, 53, 26], iv: [148, 55, 47], tag: [119, 81])
             case .unknown: fatalError("Unknown key \(rawValue)")
         }
     }

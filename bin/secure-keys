@@ -1,6 +1,7 @@
 #!/usr/bin/env ruby
 
 require 'bundler/setup'
+require 'dotenv/load'
 require_relative '../lib/keys'
 
 # Generate the keys
