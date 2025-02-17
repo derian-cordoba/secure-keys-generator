@@ -86,7 +86,7 @@ security add-generic-password -a "$SECURE_KEYS_IDENTIFIER" -s "apiKey" -w "your-
 
 #### From Environment Variables
 
-You can export them directly as environment variables.
+You can define the keys in the `.env` file or export the keys as environment variables.
 
 ```bash
 export SECURE_KEYS_IDENTIFIER="github-token,api_key,firebaseToken"
