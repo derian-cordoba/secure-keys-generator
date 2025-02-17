@@ -86,7 +86,7 @@ security add-generic-password -a "$SECURE_KEYS_IDENTIFIER" -s "apiKey" -w "your-
 
 #### From Environment Variables
 
-You can export them directly as environment variables.
+You can define the keys in the `.env` file or export the keys as environment variables.
 
 ```bash
 export SECURE_KEYS_IDENTIFIER="github-token,api_key,firebaseToken"
@@ -199,8 +199,8 @@ public enum Keys {
     /// The decrypted value of the key
     public var decryptedValue: String {
         switch self {
-            case .apiKey: return [1, 2, 4].decrypt(key: [248, 53, 26], iv: [148, 55, 47], tag: [119, 81])
-            case .someKey: return [1, 2, 4].decrypt(key: [248, 53, 26], iv: [148, 55, 47], tag: [119, 81])
+            case .apiKey: [1, 2, 4].decrypt(key: [248, 53, 26], iv: [148, 55, 47], tag: [119, 81])
+            case .someKey: [1, 2, 4].decrypt(key: [248, 53, 26], iv: [148, 55, 47], tag: [119, 81])
             case .unknown: fatalError("Unknown key \(rawValue)")
         }
     }
