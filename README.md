@@ -18,7 +18,7 @@ Utility to generate a `xcframework` for handling secure keys in iOS projects.
 
 ### Installation
 
-You can install the `Keys` utility using Homebrew using the following command:
+You can install the `SecureKeys` utility using Homebrew using the following command:
 
 ```bash
 brew tap DerianCordobaPerez/tap https://github.com/DerianCordobaPerez/secure-keys-generator
@@ -26,7 +26,7 @@ brew tap DerianCordobaPerez/tap https://github.com/DerianCordobaPerez/secure-key
 brew install DerianCordobaPerez/tap/secure_keys
 ```
 
-Another way, you can install the `Keys` utility using `gem` command:
+Another way, you can install the `SecureKeys` utility using `gem` command:
 
 ```bash
 gem install secure-keys
@@ -109,7 +109,7 @@ export SECURE_KEYS_IDENTIFIER="github-token|api_key|firebaseToken"
 
 ### Ruby script
 
-To generate the `Keys.xcframework` use the `secure-keys` command in the iOS project root directory.
+To generate the `SecureKeys.xcframework` use the `secure-keys` command in the iOS project root directory.
 
 Using global gem:
 
@@ -125,13 +125,13 @@ bundle exec secure-keys
 
 ### iOS project
 
-Within the iOS project, you can use the `Keys` target dependency like:
+Within the iOS project, you can use the `SecureKeys` target dependency like:
 
 ```swift
-import Keys
+import SecureKeys
 
 // Using key directly in the code
-let apiKey = Keys.apiKey.decryptedValue
+let apiKey = SecureKey.apiKey.decryptedValue
 
 // Using key from `Key` enum
 let someKey: String = key(for: .someKey)
@@ -140,7 +140,7 @@ let someKey: String = key(for: .someKey)
 let someKey: String = key(.someKey)
 
 // Using raw value from `Key` enum
-let apiKey: Keys = "apiKey".secretKey
+let apiKey: SecureKey = "apiKey".secretKey
 
 // Using raw value from `Key` enum with decrypted value
 let apiKey: String = "apiKey".secretKey.decryptedValue
@@ -149,7 +149,7 @@ let apiKey: String = "apiKey".secretKey.decryptedValue
 let apiKey: String = .key(for: .apiKey)
 ```
 
-## How to install the `Keys.xcframework` in the iOS project
+## How to install the `SecureKeys.xcframework` in the iOS project
 
 1. From the iOS project, click on the project target, select the `General` tab, and scroll down to the `Frameworks, Libraries, and Embedded Content` section.
 
@@ -159,35 +159,35 @@ let apiKey: String = .key(for: .apiKey)
 
 ![Add Files](/docs/assets/add-xcframework-to-ios-project/second-step.png)
 
-3. Navigate to the `keys` directory and select the `Keys.xcframework` folder.
+3. Navigate to the `keys` directory and select the `SecureKeys.xcframework` folder.
 
-![Select Keys.xcframework](/docs/assets/add-xcframework-to-ios-project/third-step.png)
+![Select SecureKeys.xcframework](/docs/assets/add-xcframework-to-ios-project/third-step.png)
 
-> Now the `Keys.xcframework` is added to the iOS project.
+> Now the `SecureKeys.xcframework` is added to the iOS project.
 
-![Select Keys.xcframework](/docs/assets/add-xcframework-to-ios-project/third-step-result.png)
+![Select SecureKeys.xcframework](/docs/assets/add-xcframework-to-ios-project/third-step-result.png)
 
 4. Click on the `Build settings` tab and search for the `Search Paths` section.
 
 ![Search Paths](/docs/assets/add-xcframework-to-ios-project/fourth-step.png)
 
-> Add the path to the `Keys.xcframework` in the `Framework Search Paths` section.
+> Add the path to the `SecureKeys.xcframework` in the `Framework Search Paths` section.
 
 ```bash
 $(inherited)
-$(SRCROOT)/.keys
+$(SRCROOT)/.secure-keys
 ```
 
 ## How it works
 
 The process when the script is executed is:
 
-1. Create a `.keys` directory.
-2. Create a temporary `Swift Package` in the `.keys` directory.
+1. Create a `.secure-keys` directory.
+2. Create a temporary `Swift Package` in the `.secure-keys` directory.
 3. Copy the `Keys` source code to the temporary `Swift Package`.
 
     ```swift
-    public enum Keys {
+    public enum SecureKey {
 
         // MARK: - Cases
 
@@ -207,7 +207,7 @@ The process when the script is executed is:
         }
     }
     ```
-4. Generate the `Keys.xcframework` using the temporary `Swift Package`.
+4. Generate the `SecureKeys.xcframework` using the temporary `Swift Package`.
 5. Remove the temporary `Swift Package`.
 
 ## License

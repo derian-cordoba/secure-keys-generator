@@ -5,13 +5,13 @@ module SecureKeys
     # Constants
 
     # The name of the directory that contains the keys
-    KEYS_DIRECTORY = '.keys'.freeze
+    KEYS_DIRECTORY = '.secure-keys'.freeze
 
     # The name of the directory that contains the generated build
     BUILD_DIRECTORY = 'Build'.freeze
 
     # The name of the Swift Package
-    SWIFT_PACKAGE_NAME = 'Keys'.freeze
+    SWIFT_PACKAGE_NAME = 'SecureKeys'.freeze
 
     # The name of the directory that contains the generated Swift package
     SWIFT_PACKAGE_DIRECTORY = "#{KEYS_DIRECTORY}/Package".freeze
