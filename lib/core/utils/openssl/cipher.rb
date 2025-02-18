@@ -4,7 +4,7 @@ require 'openssl'
 require 'base64'
 require 'securerandom'
 
-module Keys
+module SecureKeys
   module OpenSSL
     class Cipher
       private

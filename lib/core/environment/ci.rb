@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby
 
-module Keys
+module SecureKeys
   module Core
     module Environment
       class CI

@@ -3,7 +3,7 @@
 
 require_relative './swift'
 
-module Keys
+module SecureKeys
   module Swift
     class Writer
       private
@@ -70,7 +70,7 @@ module Keys
         ///
         /// - Returns: The decrypted value of the key
         @available(iOS 13.0, *)
-        public func key(for key: Keys) -> String { key.decryptedValue }
+        public func key(for key: SecureKey) -> String { key.decryptedValue }
 
         /// Fetch the decrypted value of the key
         ///
@@ -79,13 +79,13 @@ module Keys
         ///
         /// - Returns: The decrypted value of the key
         @available(iOS 13.0, *)
-        public func key(_ key: Keys) -> String { key.decryptedValue }
+        public func key(_ key: SecureKey) -> String { key.decryptedValue }
 
-        // MARK: - Keys enum
+        // MARK: - SecureKey enum
 
         /// Keys is a class that contains all the keys that are used in the application.
         @available(iOS 13.0, *)
-        public enum Keys: String {
+        public enum SecureKey: String {
 
             // MARK: - Cases
 
@@ -111,15 +111,15 @@ module Keys
             }
         }
 
-        // MARK: - String extension for keys
+        // MARK: - String extension for secure keys
 
         @available(iOS 13.0, *)
         extension String {
 
             // MARK: - Methods
 
-            /// Fetch the key from the keys enum
-            public var secretKey: Keys { Keys(rawValue: self) ?? .unknown }
+            /// Fetch the key from the secure keys enum
+            public var secretKey: SecureKey { SecureKey(rawValue: self) ?? .unknown }
 
             /// Fetch the decrypted value of the key
             ///
@@ -127,7 +127,7 @@ module Keys
             ///    - key: The key to fetch the decrypted value for
             ///
             /// - Returns: The decrypted value of the key
-            public static func key(for key: Keys) -> String { key.decryptedValue }
+            public static func key(for key: SecureKey) -> String { key.decryptedValue }
         }
 
         // swiftlint:enable all

@@ -2,7 +2,7 @@
 
 require_relative './swift'
 
-module Keys
+module SecureKeys
   module Swift
     class Package
       # Generate the Swift Package using the configured path

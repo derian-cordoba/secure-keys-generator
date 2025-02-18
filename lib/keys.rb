@@ -9,7 +9,7 @@ require_relative './core/utils/swift/swift'
 require_relative './core/utils/swift/xcframework'
 require_relative './core/utils/openssl/cipher'
 
-module Keys
+module SecureKeys
   class Generator
     private
 
@@ -21,23 +21,23 @@ module Keys
       # If the secure keys identifier is not set, set it to 'secure-keys'
       ENV['SECURE_KEYS_IDENTIFIER'] = 'secure-keys' unless ENV.key?('SECURE_KEYS_IDENTIFIER')
 
-      puts "🔔 You're using a custom delimiter '#{Keys::Globals.key_delimiter}'" unless Keys::Globals.key_delimiter.eql?(Keys::Globals.default_key_delimiter)
-      puts "🔔 You're using a custom key access identifier '#{Keys::Globals.key_access_identifier}'" unless Keys::Globals.key_access_identifier.eql?(Keys::Globals.default_key_access_identifier)
+      puts "🔔 You're using a custom delimiter '#{SecureKeys::Globals.key_delimiter}'" unless SecureKeys::Globals.key_delimiter.eql?(SecureKeys::Globals.default_key_delimiter)
+      puts "🔔 You're using a custom key access identifier '#{SecureKeys::Globals.key_access_identifier}'" unless SecureKeys::Globals.key_access_identifier.eql?(SecureKeys::Globals.default_key_access_identifier)
 
       # Configure cipher
-      self.cipher = Keys::OpenSSL::Cipher.new
+      self.cipher = SecureKeys::OpenSSL::Cipher.new
 
       # Configure the secret source based on the environment
-      if Keys::Globals.ci?
-        self.secrets_source = Keys::Core::Environment::CI.new
+      if SecureKeys::Globals.ci?
+        self.secrets_source = SecureKeys::Core::Environment::CI.new
       else
-        self.secrets_source = Keys::Core::Environment::Keychain.new
+        self.secrets_source = SecureKeys::Core::Environment::Keychain.new
       end
 
       # Define the keys that we want to map
-      self.secret_keys = secrets_source.fetch(key: Keys::Globals.key_access_identifier)
+      self.secret_keys = secrets_source.fetch(key: SecureKeys::Globals.key_access_identifier)
                                        .to_s
-                                       .split(Keys::Globals.key_delimiter)
+                                       .split(SecureKeys::Globals.key_delimiter)
                                        .map(&:strip)
 
       # Add the keys that we want to map
@@ -52,14 +52,14 @@ module Keys
     def setup
       pre_actions
 
-      package = Keys::Swift::Package.new
+      package = SecureKeys::Swift::Package.new
       package.generate
 
-      writer = Keys::Swift::Writer.new(mapped_keys: mapped_keys,
-                                       secure_key_bytes: cipher.secure_key_bytes)
+      writer = SecureKeys::Swift::Writer.new(mapped_keys: mapped_keys,
+                                             secure_key_bytes: cipher.secure_key_bytes)
       writer.write
 
-      xcframework = Keys::Swift::XCFramework.new
+      xcframework = SecureKeys::Swift::XCFramework.new
       xcframework.generate
 
       post_actions
@@ -69,15 +69,15 @@ module Keys
 
     def pre_actions
       # Remove the keys directory
-      system("rm -rf #{Keys::Swift::KEYS_DIRECTORY}")
+      system("rm -rf #{SecureKeys::Swift::KEYS_DIRECTORY}")
     end
 
     def post_actions
       # Remove the keys directory
-      system("rm -rf #{Keys::Swift::SWIFT_PACKAGE_DIRECTORY}")
+      system("rm -rf #{SecureKeys::Swift::SWIFT_PACKAGE_DIRECTORY}")
 
       # Remove the build directory
-      system("rm -rf #{Keys::Swift::KEYS_DIRECTORY}/#{Keys::Swift::BUILD_DIRECTORY}")
+      system("rm -rf #{SecureKeys::Swift::KEYS_DIRECTORY}/#{SecureKeys::Swift::BUILD_DIRECTORY}")
     end
   end
 end

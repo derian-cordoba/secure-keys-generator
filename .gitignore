@@ -1,7 +1,7 @@
 .DS_Store
 
 # XCFramework files
-.keys/
+.secure-keys/
 
 # Gem files
 secure-keys-*.gem
