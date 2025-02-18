@@ -10,20 +10,23 @@ Gem::Specification.new do |spec|
   spec.required_rubygems_version = Gem::Requirement.new('>= 0'.freeze) if spec.respond_to? :required_rubygems_version=
 
   spec.name           = 'secure-keys'
-  spec.version        = Keys::VERSION
+  spec.version        = SecureKeys::VERSION
   spec.authors        = ['Derian Córdoba']
   spec.email          = ['derianricardo451@gmail.com']
-  spec.summary        = Keys::SUMMARY
-  spec.description    = Keys::DESCRIPTION
+  spec.summary        = SecureKeys::SUMMARY
+  spec.description    = SecureKeys::DESCRIPTION
   spec.license        = 'MIT'
-  spec.homepage       = Keys::HOMEPAGE_URI
+  spec.homepage       = SecureKeys::HOMEPAGE_URI
   spec.bindir         = 'bin'
   spec.require_paths  = %w[*/lib]
   spec.platform       = Gem::Platform::RUBY
-
-  spec.metadata['homepage_uri'] = spec.homepage
-  spec.metadata['source_code_uri'] = spec.homepage
-  spec.metadata['changelog_uri'] = "#{spec.homepage}/releases"
+  spec.metadata       = {
+    'bug_tracker_uri' => "#{SecureKeys::HOMEPAGE_URI}/issues",
+    'documentation_uri' => "#{SecureKeys::HOMEPAGE_URI}/blob/main/README.md",
+    'homepage_uri' => SecureKeys::HOMEPAGE_URI,
+    'source_code_uri' => SecureKeys::HOMEPAGE_URI,
+    'changelog_uri' => "#{SecureKeys::HOMEPAGE_URI}/releases"
+  }
 
   spec.files = Dir.glob('*/lib/**/*',
                         File::FNM_DOTMATCH) + Dir['bin/*'] + Dir['*/README.md'] + %w[README.md]

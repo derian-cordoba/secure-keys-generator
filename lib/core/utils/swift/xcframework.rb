@@ -3,7 +3,7 @@
 require_relative './swift'
 require_relative '../../globals/globals'
 
-module Keys
+module SecureKeys
   module Swift
     class XCFramework
       # Generate the XCFramework from the Swift package
@@ -12,7 +12,7 @@ module Keys
         # Currently this is failling with the following error:
         # "library with the identifier 'ios-arm64' already exists."
         %w[Release].each do |configuration|
-          Keys::Globals.ios_platforms.each do |platform|
+          SecureKeys::Globals.ios_platforms.each do |platform|
             generate_key_modules(configuration:, platform:)
             generate_key_libraries(configuration:, platform: platform[:path])
           end
@@ -71,7 +71,7 @@ module Keys
         # Currently this is failling with the following error:
         # "library with the identifier 'ios-arm64' already exists."
         %w[Release].map do |configuration|
-          Keys::Globals.ios_platforms.map do |platform|
+          SecureKeys::Globals.ios_platforms.map do |platform|
             "-library #{BUILD_DIRECTORY}/#{configuration}-#{platform[:path]}/libKeys.a"
           end.join(' ')
         end.join(' ')

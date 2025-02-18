@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby
 
-module Keys
+module SecureKeys
   module Swift
     # Constants
 
