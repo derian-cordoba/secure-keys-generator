@@ -4,7 +4,7 @@ class SecureKeys < Formula
   desc SecureKeys::DESCRIPTION
   homepage SecureKeys::HOMEPAGE_URI
   url "#{SecureKeys::HOMEPAGE_URI}/archive/refs/tags/v#{SecureKeys::VERSION}.tar.gz"
-  sha256 '088fe8244bab93994702a8cabc43c955337d7320dff97939c0a28a4f50d33dc2'
+  sha256 'de64e9146fd96cfa42a3dcfac1303e90f26a2a0fd8bf379ab9c783333eac6f4c'
   license 'MIT'
 
   depends_on 'ruby@3.3'
