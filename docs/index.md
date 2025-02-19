@@ -18,10 +18,12 @@ There are multiple ways to install the `SecureKeys` utility:
 You can install the `SecureKeys` utility using [Homebrew](https://brew.sh/) with the following commands:
 
 ```bash
-brew tap DerianCordobaPerez/tap https://github.com/DerianCordobaPerez/secure-keys-generator
+brew tap derian-cordoba/secure-keys
 
-brew install DerianCordobaPerez/tap/secure_keys
+brew install derian-cordoba/secure-keys/secure-keys
 ```
+
+For more details, you can visit the [homebrew-secure-keys](https://github.com/derian-cordoba/homebrew-secure-keys) repository.
 
 ### Option 2: Install via RubyGems
 
@@ -44,6 +46,8 @@ Then, run:
 ```bash
 bundle install
 ```
+
+For more details, you can visit the [homebrew-secure-keys](https://github.com/derian-cordoba/homebrew-secure-keys) repository.
 
 ## Usage
 

@@ -15,16 +15,19 @@ Utility to generate a `xcframework` for handling secure keys in iOS projects.
 
 - Ruby 3.3.6 or higher
 - iOS 13.0 or higher
+- macOS 11.0 or higher
 
 ### Installation
 
 You can install the `SecureKeys` utility using Homebrew using the following command:
 
 ```bash
-brew tap DerianCordobaPerez/tap https://github.com/DerianCordobaPerez/secure-keys-generator
+brew tap derian-cordoba/secure-keys
 
-brew install DerianCordobaPerez/tap/secure_keys
+brew install derian-cordoba/secure-keys/secure-keys
 ```
+
+For more details, you can visit the [homebrew-secure-keys](https://github.com/derian-cordoba/homebrew-secure-keys) repository.
 
 Another way, you can install the `SecureKeys` utility using `gem` command:
 
@@ -43,6 +46,8 @@ Then, you can install the gem using:
 ```bash
 bundle install
 ```
+
+For more information about the gem, you can visit the [secure-keys](https://rubygems.org/gems/secure-keys) page.
 
 ## Usage
 
@@ -186,27 +191,28 @@ The process when the script is executed is:
 2. Create a temporary `Swift Package` in the `.secure-keys` directory.
 3. Copy the `Keys` source code to the temporary `Swift Package`.
 
-    ```swift
-    public enum SecureKey {
+   ```swift
+   public enum SecureKey {
 
-        // MARK: - Cases
+       // MARK: - Cases
 
-        case apiKey
-        case someKey
-        case unknown
+       case apiKey
+       case someKey
+       case unknown
 
-        // MARK: - Properties
+       // MARK: - Properties
 
-        /// The decrypted value of the key
-        public var decryptedValue: String {
-            switch self {
-                case .apiKey: [1, 2, 4].decrypt(key: [248, 53, 26], iv: [148, 55, 47], tag: [119, 81])
-                case .someKey: [1, 2, 4].decrypt(key: [248, 53, 26], iv: [148, 55, 47], tag: [119, 81])
-                case .unknown: fatalError("Unknown key \(rawValue)")
-            }
-        }
-    }
-    ```
+       /// The decrypted value of the key
+       public var decryptedValue: String {
+           switch self {
+               case .apiKey: [1, 2, 4].decrypt(key: [248, 53, 26], iv: [148, 55, 47], tag: [119, 81])
+               case .someKey: [1, 2, 4].decrypt(key: [248, 53, 26], iv: [148, 55, 47], tag: [119, 81])
+               case .unknown: fatalError("Unknown key \(rawValue)")
+           }
+       }
+   }
+   ```
+
 4. Generate the `SecureKeys.xcframework` using the temporary `Swift Package`.
 5. Remove the temporary `Swift Package`.
 
