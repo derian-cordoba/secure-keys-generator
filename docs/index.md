@@ -128,23 +128,23 @@ bundle exec secure-keys
 
 1. From the iOS project, click on the project target, select the `General` tab, and scroll down to the `Frameworks, Libraries, and Embedded Content` section.
 
-![Project Target](https://deriancordobaperez.github.io/secure-keys-generator/assets/add-xcframework-to-ios-project/first-step.png)
+![Project Target](https://derian-cordoba.github.io/secure-keys/assets/add-xcframework-to-ios-project/first-step.png)
 
 2. Click on the `Add Other...` button and click on the `Add Files...` option.
 
-![Add Files](https://deriancordobaperez.github.io/secure-keys-generator/assets/add-xcframework-to-ios-project/second-step.png)
+![Add Files](https://derian-cordoba.github.io/secure-keys/assets/add-xcframework-to-ios-project/second-step.png)
 
 3. Navigate to the `Securekeys` directory and select the `SecureKeys.xcframework` folder.
 
-![Select SecureKeys.xcframework](https://deriancordobaperez.github.io/secure-keys-generator/assets/add-xcframework-to-ios-project/third-step.png)
+![Select SecureKeys.xcframework](https://derian-cordoba.github.io/secure-keys/assets/add-xcframework-to-ios-project/third-step.png)
 
 > Now the `SecureKeys.xcframework` is added to the iOS project.
 
-![Select SecureKeys.xcframework](https://deriancordobaperez.github.io/secure-keys-generator/assets/add-xcframework-to-ios-project/third-step-result.png)
+![Select SecureKeys.xcframework](https://derian-cordoba.github.io/secure-keys/assets/add-xcframework-to-ios-project/third-step-result.png)
 
 4. Click on the `Build settings` tab and search for the `Search Paths` section.
 
-![Search Paths](https://deriancordobaperez.github.io/secure-keys-generator/assets/add-xcframework-to-ios-project/fourth-step.png)
+![Search Paths](https://derian-cordoba.github.io/secure-keys/assets/add-xcframework-to-ios-project/fourth-step.png)
 
 > Add the path to the `SecureKeys.xcframework` in the `Framework Search Paths` section.
 
