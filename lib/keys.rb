@@ -8,6 +8,7 @@ require_relative './core/utils/swift/package'
 require_relative './core/utils/swift/swift'
 require_relative './core/utils/swift/xcframework'
 require_relative './core/utils/openssl/cipher'
+require_relative './core/console/argument_parser'
 
 module SecureKeys
   class Generator
@@ -18,6 +19,9 @@ module SecureKeys
     public
 
     def initialize
+      # Configure the argument parser
+      SecureKeys::Core::Console::ArgumentParser.new
+
       # If the secure keys identifier is not set, set it to 'secure-keys'
       ENV['SECURE_KEYS_IDENTIFIER'] = 'secure-keys' unless ENV.key?('SECURE_KEYS_IDENTIFIER')
 
