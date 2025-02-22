@@ -22,9 +22,6 @@ module SecureKeys
       # Configure the argument parser
       SecureKeys::Core::Console::ArgumentParser.new
 
-      # If the secure keys identifier is not set, set it to 'secure-keys'
-      ENV['SECURE_KEYS_IDENTIFIER'] = 'secure-keys' unless ENV.key?('SECURE_KEYS_IDENTIFIER')
-
       puts "🔔 You're using a custom delimiter '#{SecureKeys::Globals.key_delimiter}'" unless SecureKeys::Globals.key_delimiter.eql?(SecureKeys::Globals.default_key_delimiter)
       puts "🔔 You're using a custom key access identifier '#{SecureKeys::Globals.key_access_identifier}'" unless SecureKeys::Globals.key_access_identifier.eql?(SecureKeys::Globals.default_key_access_identifier)
 
