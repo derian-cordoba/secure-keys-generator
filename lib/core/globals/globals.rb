@@ -1,5 +1,7 @@
 #!/usr/bin/env ruby
 
+require_relative '../console/arguments/handler'
+
 module SecureKeys
   module Globals
     module_function
@@ -40,19 +42,21 @@ module SecureKeys
     # Returns the identifier to get all the key names
     # @return [String] key access identifier
     def key_access_identifier
-      ENV['SECURE_KEYS_IDENTIFIER'] || default_key_access_identifier
+      Core::Console::Argument::Handler.fetch(key: :identifier,
+                                             default: default_key_access_identifier)
+    end
+
+    # Returns the keys delimiter
+    # @return [String] keys delimiter
+    def key_delimiter
+      Core::Console::Argument::Handler.fetch(key: :delimiter,
+                                             default: default_key_delimiter)
     end
 
     # Returns the default key access identifier
     # @return [String] default key access identifier
     def default_key_access_identifier
       'secure-keys'
-    end
-
-    # Returns the keys delimiter
-    # @return [String] keys delimiter
-    def key_delimiter
-      ENV['SECURE_KEYS_DELIMITER'] || default_key_delimiter
     end
 
     # Returns the default keys delimiter
