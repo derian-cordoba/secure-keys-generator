@@ -145,6 +145,12 @@ To avoid to define the `SECURE_KEYS_IDENTIFIER` and `SECURE_KEYS_DELIMITER` env 
 secure-keys --identifier "your-keychain-or-env-variable-identifier" --delimiter "|"
 ```
 
+Also, you can use the short options:
+
+```bash
+secure-keys -i "your-keychain-or-env-variable-identifier" -d "|"
+```
+
 ### Step 3: Integrate SecureKeys.xcframework into Your iOS Project
 
 1. From the iOS project, click on the project target, select the `General` tab, and scroll down to the `Frameworks, Libraries, and Embedded Content` section.

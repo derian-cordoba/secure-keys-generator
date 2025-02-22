@@ -149,6 +149,12 @@ To avoid to define the `SECURE_KEYS_IDENTIFIER` and `SECURE_KEYS_DELIMITER` env 
 secure-keys --identifier "your-keychain-or-env-variable-identifier" --delimiter "|"
 ```
 
+Also, you can use the short options:
+
+```bash
+secure-keys -i "your-keychain-or-env-variable-identifier" -d "|"
+```
+
 ### iOS project
 
 Within the iOS project, you can use the `SecureKeys` target dependency like:
