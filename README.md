@@ -143,7 +143,7 @@ Usage: secure-keys [--options]
     -v, --version                    Show the secure-keys version
 ```
 
-To avoid to define the `SECURE_KEYS_IDENTIFIER` and `SECURE_KEYS_DELIMITER` env variables, you can use the `--identifier` and `--delimiter` options.
+To avoid defining the `SECURE_KEYS_IDENTIFIER` and `SECURE_KEYS_DELIMITER` env variables, you can use the `--identifier` and `--delimiter` options.
 
 ```bash
 secure-keys --identifier "your-keychain-or-env-variable-identifier" --delimiter "|"
