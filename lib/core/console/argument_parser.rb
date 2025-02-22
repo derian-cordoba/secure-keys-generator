@@ -2,32 +2,25 @@
 
 require 'optparse'
 require_relative '../globals/globals'
+require_relative './argument_handler'
 
 module SecureKeys
   module Core
     module Console
       class ArgumentParser < OptionParser
-        class << self
-          attr_reader :arguments
-        end
-
-        # Configure the default arguments
-        @arguments = {
-          delimiter: nil,
-          identifier: nil,
-        }
-
+        # Initialize the argument parser with the default options
         def initialize
           super('Usage: secure-keys [--options]')
           separator('')
 
           # Configure the arguement parser
           configure!
-          order!(into: @arguments)
+          parse!(into: ArgumentHandler.arguments)
         end
 
         private
 
+        # Configure the argument parser
         def configure!
           on('-h', '--help', 'Use the provided commands to select the params') do
             puts self
