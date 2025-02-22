@@ -128,6 +128,27 @@ Using bundler:
 bundle exec secure-keys
 ```
 
+To get more information about the command, you can use the `--help` option.
+
+```bash
+secure-keys --help
+
+# Output
+
+Usage: secure-keys [--options]
+
+    -h, --help                       Use the provided commands to select the params
+    -d, --delimiter DELIMITER        The delimiter to use for the key access (default: ",")
+    -i, --identifier IDENTIFIER      The identifier to use for the key access (default: "secure-keys")
+    -v, --version                    Show the secure-keys version
+```
+
+To avoid to define the `SECURE_KEYS_IDENTIFIER` and `SECURE_KEYS_DELIMITER` env variables, you can use the `--identifier` and `--delimiter` options.
+
+```bash
+secure-keys --identifier "your-keychain-or-env-variable-identifier" --delimiter "|"
+```
+
 ### iOS project
 
 Within the iOS project, you can use the `SecureKeys` target dependency like:
@@ -189,7 +210,7 @@ The process when the script is executed is:
 
 1. Create a `.secure-keys` directory.
 2. Create a temporary `Swift Package` in the `.secure-keys` directory.
-3. Copy the `Keys` source code to the temporary `Swift Package`.
+3. Copy the `SecureKeys` source code to the temporary `Swift Package`.
 
    ```swift
    public enum SecureKey {

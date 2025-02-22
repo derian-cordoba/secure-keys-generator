@@ -124,6 +124,27 @@ Using Bundler:
 bundle exec secure-keys
 ```
 
+To get more information about the command, you can use the `--help` option.
+
+```bash
+secure-keys --help
+
+# Output
+
+Usage: secure-keys [--options]
+
+    -h, --help                       Use the provided commands to select the params
+    -d, --delimiter DELIMITER        The delimiter to use for the key access (default: ",")
+    -i, --identifier IDENTIFIER      The identifier to use for the key access (default: "secure-keys")
+    -v, --version                    Show the secure-keys version
+```
+
+To avoid to define the `SECURE_KEYS_IDENTIFIER` and `SECURE_KEYS_DELIMITER` env variables, you can use the `--identifier` and `--delimiter` options.
+
+```bash
+secure-keys --identifier "your-keychain-or-env-variable-identifier" --delimiter "|"
+```
+
 ### Step 3: Integrate SecureKeys.xcframework into Your iOS Project
 
 1. From the iOS project, click on the project target, select the `General` tab, and scroll down to the `Frameworks, Libraries, and Embedded Content` section.
