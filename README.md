@@ -165,16 +165,16 @@ import SecureKeys
 // Using key directly in the code
 let apiKey = SecureKey.apiKey.decryptedValue
 
-// Using key from `Key` enum
+// Using key from `SecureKey` enum
 let someKey: String = key(for: .someKey)
 
-// Alternative way to use key from `Key` enum
+// Alternative way to use key from `SecureKey` enum
 let someKey: String = key(.someKey)
 
-// Using raw value from `Key` enum
+// Using raw value from `SecureKey` enum
 let apiKey: SecureKey = "apiKey".secretKey
 
-// Using raw value from `Key` enum with decrypted value
+// Using raw value from `SecureKey` enum with decrypted value
 let apiKey: String = "apiKey".secretKey.decryptedValue
 
 // Using `key` method to get the key
