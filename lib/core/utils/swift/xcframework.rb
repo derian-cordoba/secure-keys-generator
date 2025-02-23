@@ -2,6 +2,7 @@
 
 require_relative './swift'
 require_relative '../../globals/globals'
+require_relative '../../console/shell'
 
 module SecureKeys
   module Swift
@@ -35,7 +36,7 @@ module SecureKeys
             ARCHS="arm64" BUILD_DIR="../#{BUILD_DIRECTORY}"
         BASH
 
-        system(command)
+        Core::Console::Shell.sh(command:)
       end
 
       # Generate the Swift package libraries
@@ -48,7 +49,7 @@ module SecureKeys
             #{BUILD_DIRECTORY}/#{configuration}-#{platform}/#{SWIFT_PACKAGE_NAME}.o
         BASH
 
-        system(command)
+        Core::Console::Shell.sh(command:)
       end
 
       # Generate the XCFramework from the Swift package libraries
@@ -61,7 +62,7 @@ module SecureKeys
             -output #{XCFRAMEWORK_DIRECTORY}
         BASH
 
-        system(command)
+        Core::Console::Shell.sh(command:)
       end
 
       # Generate the XCFramework library command

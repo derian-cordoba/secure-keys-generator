@@ -16,7 +16,7 @@ module SecureKeys
         # @param command [String] The command that should be executed
         # @param error_handler [Block] A block that will be called with the output of the command if the command exists with a non-zero exit status
         # @return [Array] An array containing the output of the command, the exit status and the command
-        def exec(command:, error_handler: nil)
+        def sh(command:, error_handler: nil)
           previous_encoding = [Encoding.default_external, Encoding.default_internal]
           Encoding.default_external = Encoding::UTF_8
           Encoding.default_internal = Encoding::UTF_8
@@ -27,7 +27,7 @@ module SecureKeys
           Open3.popen2e(command) do |_stdin, io, thread|
             io.sync = true
             io.each do |line|
-              Logger.command_output(command: line.strip) if Globals.verbose?
+              Logger.command_output(command: line.strip)
               output << line
             end
             exit_status = thread.value
