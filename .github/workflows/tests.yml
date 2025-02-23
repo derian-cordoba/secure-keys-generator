@@ -12,6 +12,11 @@ on:
       runs-on:
         description: Runs on the specified runner
         required: false
+        type: string
+      use-bundle-cache:
+        description: Use bundle cache for dependencies
+        required: true
+        type: boolean
 
 jobs:
   tests:
@@ -22,7 +27,7 @@ jobs:
 
       - uses: ruby/setup-ruby@v1
         with:
-          bundler-cache: true
+          bundler-cache: ${{ (github.event_name == 'workflow_dispatch' && inputs.use-bundle-cache) || (github.event_name != 'workflow_dispatch' && (vars.USE_BUNDLE_CACHE == 'true') || false) }}
 
       - name: Install dependencies
         run: bundle install
