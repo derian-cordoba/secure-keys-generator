@@ -1,0 +1,36 @@
+name: Tests
+
+on:
+  push:
+    branches:
+      - main
+
+  pull_request:
+
+  workflow_dispatch:
+    inputs:
+      runs-on:
+        description: Runs on the specified runner
+        required: false
+        type: string
+      use-bundle-cache:
+        description: Use bundle cache for dependencies
+        required: true
+        type: boolean
+
+jobs:
+  tests:
+    runs-on: ${{ inputs.runs-on || vars.RUNS_ON || 'macos-latest' }}
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: ruby/setup-ruby@v1
+        with:
+          bundler-cache: ${{ (github.event_name == 'workflow_dispatch' && inputs.use-bundle-cache || false) || (github.event_name != 'workflow_dispatch' && (vars.USE_BUNDLE_CACHE == 'true') || false) }}
+
+      - name: Install dependencies
+        run: bundle install
+
+      - name: Run tests
+        run: bundle exec rspec

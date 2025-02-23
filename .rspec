@@ -1,0 +1,5 @@
+require 'rspec'
+
+--color
+--format d
+--require spec_helper
