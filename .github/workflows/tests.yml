@@ -15,7 +15,7 @@ on:
 
 jobs:
   tests:
-    runs-on: ${{ fromJson(inputs.runs-on || vars.RUNS_ON || '["self-hosted", "macos-latest"]') }}
+    runs-on: ${{ inputs.runs-on || vars.RUNS_ON || 'macos-latest' }}
 
     steps:
       - uses: actions/checkout@v4
