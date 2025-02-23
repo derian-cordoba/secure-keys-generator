@@ -5,3 +5,6 @@
 
 # Gem files
 secure-keys-*.gem
+
+# Code covarage files
+coverage/

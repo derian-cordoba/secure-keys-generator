@@ -17,7 +17,9 @@ GEM
     ZenTest (4.12.2)
     ast (2.4.2)
     base64 (0.2.0)
+    diff-lcs (1.6.0)
     digest (3.2.0)
+    docile (1.4.1)
     dotenv (3.1.7)
     json (2.10.1)
     language_server-protocol (3.17.0.4)
@@ -30,7 +32,21 @@ GEM
       racc
     racc (1.8.1)
     rainbow (3.1.1)
+    rake (13.2.1)
     regexp_parser (2.10.0)
+    rspec (3.13.0)
+      rspec-core (~> 3.13.0)
+      rspec-expectations (~> 3.13.0)
+      rspec-mocks (~> 3.13.0)
+    rspec-core (3.13.3)
+      rspec-support (~> 3.13.0)
+    rspec-expectations (3.13.3)
+      diff-lcs (>= 1.2.0, < 2.0)
+      rspec-support (~> 3.13.0)
+    rspec-mocks (3.13.2)
+      diff-lcs (>= 1.2.0, < 2.0)
+      rspec-support (~> 3.13.0)
+    rspec-support (3.13.2)
     rubocop (1.71.2)
       json (~> 2.3)
       language_server-protocol (>= 3.17.0)
@@ -43,7 +59,15 @@ GEM
       unicode-display_width (>= 2.4.0, < 4.0)
     rubocop-ast (1.38.0)
       parser (>= 3.3.1.0)
+    ruby-debug-ide (0.7.5)
+      rake (>= 0.8.1)
     ruby-progressbar (1.13.0)
+    simplecov (0.22.0)
+      docile (~> 1.1)
+      simplecov-html (~> 0.11)
+      simplecov_json_formatter (~> 0.1)
+    simplecov-html (0.13.1)
+    simplecov_json_formatter (0.1.4)
     unicode-display_width (3.1.4)
       unicode-emoji (~> 4.0, >= 4.0.4)
     unicode-emoji (4.0.4)
@@ -52,8 +76,11 @@ PLATFORMS
   arm64-darwin-24
 
 DEPENDENCIES
+  rspec (~> 3.13.0)
   rubocop (~> 1.71.2)
+  ruby-debug-ide (~> 0.7.5)
   secure-keys!
+  simplecov (~> 0.22.0)
 
 RUBY VERSION
    ruby 3.3.6p108
