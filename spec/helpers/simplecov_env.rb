@@ -15,8 +15,6 @@ module SimpleCovEnv
 
       # Don't run coverage on the spec folder.
       add_filter 'spec'
-
-      at_exit { SimpleCov.result }
     end
   end
 end

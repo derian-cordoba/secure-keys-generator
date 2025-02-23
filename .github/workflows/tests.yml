@@ -1,0 +1,31 @@
+name: Tests
+
+on:
+  push:
+    branches:
+      - main
+
+  pull_request:
+
+  workflow_dispatch:
+    inputs:
+      runs-on:
+        description: Runs on the specified runner
+        required: false
+
+jobs:
+  tests:
+    runs-on: ${{ fromJson(inputs.runs-on || vars.RUNS_ON || '["self-hosted", "macos-latest"]') }}
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: ruby/setup-ruby@v1
+        with:
+          bundler-cache: true
+
+      - name: Install dependencies
+        run: bundle install
+
+      - name: Run tests
+        run: bundle exec rspec
