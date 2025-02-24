@@ -95,10 +95,10 @@ xed .
 
 You can visit the `AppDelegate.swift` file to see the Firebase initialization.
 
-![AppDelegate.swift file](./docs/assets/app-delegate-swift-file.png)
+![AppDelegate.swift file](/fixtures/UIKitFirebaseApp/docs/assets/app-delegate-swift-file.png)
 
 Later you can follow the steps described in the [SecureKeys documentation](/README.md#how-to-install-the-securekeysxcframework-in-the-ios-project) to run the app.
 
 To ensure that the app is working properly, you can compile or run the app from the Xcode.
 
-![Example of the UIKit app running](./docs/assets/run-xcode-app.mp4)
+![Example of the UIKit app running](/fixtures/UIKitFirebaseApp/docs/assets/run-xcode-app.mp4)
