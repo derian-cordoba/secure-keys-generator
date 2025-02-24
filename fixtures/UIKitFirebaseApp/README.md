@@ -101,4 +101,4 @@ Later you can follow the steps described in the [SecureKeys documentation](/READ
 
 To ensure that the app is working properly, you can compile or run the app from the Xcode.
 
-![Example of the UIKit app running](/fixtures/UIKitFirebaseApp/docs/assets/run-xcode-app.mp4)
+![Example of the UIKit app running](/fixtures/UIKitFirebaseApp/docs/assets/run-xcode-app.gif)
