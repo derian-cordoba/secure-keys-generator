@@ -7,10 +7,12 @@ describe(SecureKeys::Core::Console::Argument::Parser) do
     expected_version = "secure-keys version: v#{SecureKeys::VERSION}"
 
     # when
-    output = `./bin/secure-keys --version`.strip
+    %w[-v --version].each do |option|
+      output = `./bin/secure-keys #{option}`.strip
 
-    # then
-    expect(output).to(eq(expected_version))
+      # then
+      expect(output).to(eq(expected_version))
+    end
   end
 
   it('should be the help information from terminal output') do
@@ -21,13 +23,17 @@ describe(SecureKeys::Core::Console::Argument::Parser) do
       '-h, --help                       Use the provided commands to select the params',
       '-d, --delimiter DELIMITER        The delimiter to use for the key access (default: ",")',
       '-i, --identifier IDENTIFIER      The identifier to use for the key access (default: "secure-keys")',
+      '--verbose                    Enable verbose mode (default: false)',
       '-v, --version                    Show the secure-keys version'
     ]
 
     # when
-    output_lines = `./bin/secure-keys --help`.split("\n").map(&:strip)
+    %w[-h --help].each do |option|
+      output_lines = `./bin/secure-keys #{option}`.split("\n")
+                                                  .map(&:strip)
 
-    # then
-    expect(output_lines).to(eq(expected_help))
+      # then
+      expect(output_lines).to(eq(expected_help))
+    end
   end
 end
