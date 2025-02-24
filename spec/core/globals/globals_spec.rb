@@ -2,6 +2,17 @@ require 'core/globals/globals'
 require 'core/console/arguments/handler'
 
 describe(SecureKeys::Globals) do
+  before(:each) do
+    # Reset the argument handler
+    SecureKeys::Core::Console::Argument::Handler.reset
+
+    # Reset the environment variables
+    ENV['SECURE_KEYS_IDENTIFIER'] = nil
+    ENV['SECURE_KEYS_DELIMITER'] = nil
+    ENV['SECURE_KEYS_VERBOSE'] = nil
+    ENV['VERBOSE'] = nil
+  end
+
   it('should be the default access key value') do
     # given
     expected_access_key = SecureKeys::Globals.default_key_access_identifier
@@ -96,5 +107,73 @@ describe(SecureKeys::Globals) do
 
     # then
     expect(SecureKeys::Globals.key_delimiter).to(eq(expected_delimiter))
+  end
+
+  it('should be disabled the verbose mode from environment (SECURE_KEYS_VERBOSE)') do
+    # given
+    expected_verbose = false
+
+    # when
+    ENV['SECURE_KEYS_VERBOSE'] = expected_verbose.to_s
+
+    # then
+    expect(SecureKeys::Globals.verbose?).to(eq(expected_verbose))
+  end
+
+  it('should be enabled the verbose mode from environment (SECURE_KEYS_VERBOSE)') do
+    # given
+    expected_verbose = true
+
+    # when
+    ENV['SECURE_KEYS_VERBOSE'] = expected_verbose.to_s
+
+    # then
+    expect(SecureKeys::Globals.verbose?).to(eq(expected_verbose))
+  end
+
+  it('should be disabled the verbose mode from environment (VERBOSE)') do
+    # given
+    expected_verbose = false
+
+    # when
+    ENV['VERBOSE'] = expected_verbose.to_s
+
+    # then
+    expect(SecureKeys::Globals.verbose?).to(eq(expected_verbose))
+  end
+
+  it('should be enabled the verbose mode from environment (VERBOSE)') do
+    # given
+    expected_verbose = true
+
+    # when
+    ENV['VERBOSE'] = expected_verbose.to_s
+
+    # then
+    expect(SecureKeys::Globals.verbose?).to(eq(expected_verbose))
+  end
+
+  it('should be disabled the verbose mode from argument handler') do
+    # given
+    expected_verbose = false
+
+    # when
+    SecureKeys::Core::Console::Argument::Handler.set(key: :verbose,
+                                                     value: expected_verbose)
+
+    # then
+    expect(SecureKeys::Globals.verbose?).to(eq(expected_verbose))
+  end
+
+  it('should be enabled the verbose mode from argument handler') do
+    # given
+    expected_verbose = true
+
+    # when
+    SecureKeys::Core::Console::Argument::Handler.set(key: :verbose,
+                                                     value: expected_verbose)
+
+    # then
+    expect(SecureKeys::Globals.verbose?).to(eq(expected_verbose))
   end
 end

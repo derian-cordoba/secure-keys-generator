@@ -29,6 +29,9 @@ module SecureKeys
     def verbose?
       Core::Console::Argument::Handler.fetch(key: :verbose,
                                              default: ENV.fetch('VERBOSE', false))
+                                      .to_s
+                                      .downcase
+                                      .eql?('true')
     end
 
     # Returns the supported iOS platforms
