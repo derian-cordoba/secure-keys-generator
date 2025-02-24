@@ -1,6 +1,7 @@
 #!/usr/bin/env ruby
 
 require_relative './swift'
+require_relative '../../console/shell'
 
 module SecureKeys
   module Swift
@@ -14,7 +15,7 @@ module SecureKeys
           swift package init --name #{SWIFT_PACKAGE_NAME} --type library
         BASH
 
-        system(command)
+        Core::Console::Shell.sh(command:)
       end
     end
   end

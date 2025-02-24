@@ -30,6 +30,7 @@ module SecureKeys
 
             on('-d', '--delimiter DELIMITER', String, "The delimiter to use for the key access (default: \"#{Globals.default_key_delimiter}\")")
             on('-i', '--identifier IDENTIFIER', String, "The identifier to use for the key access (default: \"#{Globals.default_key_access_identifier}\")")
+            on('--verbose', TrueClass, 'Enable verbose mode (default: false)')
 
             on('-v', '--version', 'Show the secure-keys version') do
               puts "secure-keys version: v#{SecureKeys::VERSION}"

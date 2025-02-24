@@ -11,6 +11,15 @@ module SecureKeys
           def self.set(key:, value:)
             @arguments[key.to_sym] = value
           end
+
+          # Reset the arguments to initial values
+          def self.reset
+            @arguments = {
+              delimiter: nil,
+              identifier: nil,
+              verbose: false,
+            }
+          end
         end
       end
     end

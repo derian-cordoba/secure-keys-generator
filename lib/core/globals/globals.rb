@@ -24,6 +24,16 @@ module SecureKeys
       ENV.key?('CIRCLECI')
     end
 
+    # Check if the current instance is verbose
+    # @return [Bool] true if the current instance is verbose
+    def verbose?
+      Core::Console::Argument::Handler.fetch(key: :verbose,
+                                             default: ENV.fetch('VERBOSE', false))
+                                      .to_s
+                                      .downcase
+                                      .eql?('true')
+    end
+
     # Returns the supported iOS platforms
     # @return [Array] supported iOS platforms
     def ios_platforms

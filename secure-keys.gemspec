@@ -33,11 +33,15 @@ Gem::Specification.new do |spec|
   spec.executables = spec.files.grep(%r{^bin/}) { |file| File.basename(file) }
 
   spec.add_runtime_dependency 'base64', '~> 0.2.0'
+  spec.add_runtime_dependency 'colorize', '~> 1.1.0'
   spec.add_runtime_dependency 'digest', '~> 3.2.0'
   spec.add_runtime_dependency 'dotenv', '~> 3.1.7'
   spec.add_runtime_dependency 'json', '~> 2.10.1'
+  spec.add_runtime_dependency 'logger', '~> 1.6.6'
+  spec.add_runtime_dependency 'open3', '~> 0.2.1'
   spec.add_runtime_dependency 'optparse', '~> 0.6.0'
   spec.add_runtime_dependency 'osx_keychain', '~> 1.0.2'
+  spec.add_runtime_dependency 'tty-screen', '~> 0.8.2'
   spec.add_development_dependency 'rspec', '~> 3.13.0'
   spec.add_development_dependency 'rubocop', '~> 1.71.2'
   spec.add_development_dependency 'ruby-debug-ide', '~> 0.7.5'

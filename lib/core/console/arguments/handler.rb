@@ -11,6 +11,7 @@ module SecureKeys
           @arguments = {
             delimiter: nil,
             identifier: nil,
+            verbose: false,
           }
 
           # Fetch the argument value by key
