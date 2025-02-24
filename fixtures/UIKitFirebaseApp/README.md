@@ -11,7 +11,7 @@ Then, download the `GoogleService-Info.plist` file and add it to the `UIKitApp` 
 Next, you need to remove the `API_KEY`, `GCM_SENDER_ID`, `BUNDLE_ID`, `PROJECT_ID`, `STORAGE_BUCKET` and `GOOGLE_APP_ID` keys from the `Info.plist` file and add them to the Keychain.
 
 > [!IMPORTANT]
-> These removed keys should be added to the Keychain using the `secure-keys` or any other service name defined by the `SECURE_KEYS_IDENTIFIER` environment variable, you can see more details about it in the [SecureKeys documentation](/README.md#from-keychain).
+> These removed keys should be added to the Keychain using the `secure-keys` or any other service name defined by the `SECURE_KEYS_IDENTIFIER` environment variable, you can see more details about this in the [SecureKeys documentation](/README.md#from-keychain).
 
 ```diff
 <?xml version="1.0" encoding="UTF-8"?>
@@ -78,7 +78,7 @@ security add-generic-password -a "secure-keys" -s "firebaseGoogleAppID" -w "your
 
 # Usage
 
-Before to run the app, you need to run the `secure-keys` command:
+Before running the app, you need to run the `secure-keys` command:
 
 ```bash
 secure-keys --verbose
