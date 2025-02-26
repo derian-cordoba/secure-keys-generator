@@ -1,11 +1,11 @@
 #!/usr/bin/env ruby
 
-require 'xcodeproj'
 require_relative './swift'
 require_relative '../../globals/globals'
 require_relative '../../console/shell'
 require_relative '../../console/logger'
 require_relative '../../console/arguments/handler'
+require_relative '../swift/xcodeproj'
 
 module SecureKeys
   module Swift
@@ -86,35 +86,17 @@ module SecureKeys
       # @param target_name [String] The target name to add the XCFramework
       def add_xcframework_to_xcodeproj_target_if_needed(target_name: nil)
         target_name ||= Core::Console::Argument::Handler.fetch(key: :target)
-
         return if target_name.to_s.empty?
 
-        xcodeproj = Xcodeproj::Project.open(SecureKeys::Globals.xcodeproj_path)
-        return Core::Console::Logger.error(message: "The xcodeproj #{xcodeproj} already have the #{XCFRAMEWORK_DIRECTORY}") if xcodeproj_has_secure_keys_xcframework?(xcodeproj:)
-
         Core::Console::Logger.important(message: "Adding the XCFramework to the target '#{target_name}'")
-        xcodeproj_target = xcodeproj.targets.find { |target| target.name.eql?(target_name) }
 
-        Core::Console::Logger.crash!(message: "The target #{target_name} was not found") if xcodeproj_target.nil?
-
-        xcframework_ref = xcodeproj.frameworks_group.new_file(XCFRAMEWORK_DIRECTORY)
-        xcodeproj_target.frameworks_build_phase.add_file_reference(xcframework_ref)
+        xcodeproj = Xcodeproj.xcodeproj
+        xcodeproj_target = Xcodeproj.xcodeproj_target_by_target_name(xcodeproj:, target_name:)
+        Xcodeproj.add_framework_search_path(xcodeproj_target:)
+        Xcodeproj.add_xcframework_to_build_phases(xcodeproj:, xcodeproj_target:)
 
         xcodeproj.save
-      end
-
-      # Check if the Xcode project has the secure keys XCFramework
-      # @param xcodeproj [Xcodeproj::Project] The Xcode project
-      # @return [Bool] true if the Xcode project has the secure keys XCFramework
-      def xcodeproj_has_secure_keys_xcframework?(xcodeproj:)
-        xcodeproj.targets.each do |target|
-          target.frameworks_build_phase.files.each do |file|
-            next if file.file_ref.nil?
-
-            return true if file.file_ref.path.include?(XCFRAMEWORK_DIRECTORY)
-          end
-        end
-        false
+        Core::Console::Logger.success(message: "The XCFramework was added to the target '#{target_name}'")
       end
     end
   end
